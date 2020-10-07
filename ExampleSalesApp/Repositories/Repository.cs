@@ -1,4 +1,11 @@
-﻿using ExampleSalesApp.Models;
+﻿//    Copyright (c) Microsoft Corporation. All rights reserved.
+//    This code is licensed under the Microsoft Public License.
+//    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+//    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+//    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+//    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+
+using ExampleSalesApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +41,7 @@ namespace ExampleSalesApp.Repositories
         public void Update(T entity)
         {
             T e = _data.FirstOrDefault(x => x.Id == entity.Id);
-            e = entity;            
+            e = entity;
         }
 
         public IQueryable<T> Query(Expression<Func<T, bool>> expression)

@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
+﻿//    Copyright (c) Microsoft Corporation. All rights reserved.
+//    This code is licensed under the Microsoft Public License.
+//    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+//    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+//    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+//    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+
 using ExampleSalesApp.Models;
 using ExampleSalesApp.Views;
 
@@ -23,7 +24,7 @@ namespace ExampleSalesApp.Controllers
 
             _view.SetController(this);
             LoadCustomers();
-        }        
+        }
 
         private void _model_ModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -46,7 +47,8 @@ namespace ExampleSalesApp.Controllers
 
             _model.CurrentCustomer = c;
 
-            _view.FocusCustomerEditFields();            
+            _view.FocusCustomerEditFields();
+            _view.EnableDeleteCustomer(false);
         }
 
         public ISalesFormView GetView()
@@ -74,7 +76,7 @@ namespace ExampleSalesApp.Controllers
         public void SelectedCustomerChanged(int id)
         {
             _model.CurrentCustomer = _model.FindCustomerById(id);
-            _view.ShowCustomerInfo(_model.CurrentCustomer);            
+            _view.ShowCustomerInfo(_model.CurrentCustomer);
         }
 
         public void SaveChanges()
@@ -82,7 +84,7 @@ namespace ExampleSalesApp.Controllers
             Customer customer = _model.CurrentCustomer;
             customer.Firstname = _view.CustomerFirstname;
             customer.Surname = _view.CustomerLastname;
-            _model.UpdateCustomer(customer);            
+            _model.UpdateCustomer(customer);
         }
 
         public void DeleteCustomer()
