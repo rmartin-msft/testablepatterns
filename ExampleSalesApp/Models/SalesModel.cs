@@ -1,4 +1,11 @@
-﻿using ExampleSalesApp.Repositories;
+﻿//    Copyright (c) Microsoft Corporation. All rights reserved.
+//    This code is licensed under the Microsoft Public License.
+//    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+//    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+//    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+//    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+
+using ExampleSalesApp.Repositories;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,15 +23,13 @@ namespace ExampleSalesApp.Models
         protected IRepository<Customer> _customerData;
 
         protected Customer _currentCustomer;
-        
+
         public Customer CurrentCustomer
         {
-            get
-            {
+            get {
                 return _currentCustomer;
             }
-            set
-            {
+            set {
                 _currentCustomer = value;
 
                 NotifyDataChanged();
@@ -38,7 +43,7 @@ namespace ExampleSalesApp.Models
         #endregion
 
         public event PropertyChangedEventHandler ModelPropertyChanged;
-        
+
         public SalesModel(IRepository<Customer> customerRepo)
         {
             _customerData = customerRepo;
@@ -47,10 +52,10 @@ namespace ExampleSalesApp.Models
         public IList<Customer> GetAllCustomers()
         {
             return _customerData.GetAll();
-        }        
+        }
 
         public void UpdateCustomer(Customer c)
-        {            
+        {
             Customer existingCustomer = _customerData.GetById(c.Id);
 
             if (null != existingCustomer)
@@ -63,7 +68,7 @@ namespace ExampleSalesApp.Models
                 _customerData.Insert(c);
             }
 
-            NotifyDataChanged();                      
+            NotifyDataChanged();
         }
 
         public Customer FindCustomerById(int id)
